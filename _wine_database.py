@@ -11,7 +11,7 @@ class _wine_database:
         df = pd.read_csv(movie_file)
         df = df.assign(taster_id=(df['taster_name']).astype('category').cat.codes)
         df = df.assign(variety_id=(df['variety']).astype('category').cat.codes)
-        df = df.assign(title_id=(df['title']).astype('category').cat.codes)
+        df = df.assign(bottle_id=(df['title']).astype('category').cat.codes)
         df = df.drop(['region_1', 'region_2'], axis=1)
 
 if __name__ == '__main__':
