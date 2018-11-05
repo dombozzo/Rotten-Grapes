@@ -1,4 +1,5 @@
-
+import numpy as np
+import pandas as pd
 
 class _wine_database:
 
@@ -8,7 +9,11 @@ class _wine_database:
         self.ratings = {}
 
     def load_all(self, movie_file):
-        f = open(movie_file)
+        df = pd.read_csv(movie_file)
+        df['taster_id'] = df.groupby(['taster_name']).ngroup()
+        df['variety_id'] = df.groupby(['variety']).ngroup()
+        df['title_id'] = df.groupby(['title']).ngroup()
+        '''f = open(movie_file)
         for line in f:
             line = line.strip()
             components = line.split(",")
@@ -34,7 +39,8 @@ class _wine_database:
             winery = components[13]
             pass
 
-        pass
+        pass'''
 
-
-
+if __name__ == '__main__':
+    wines = _wine_database()
+    wines.load_all('data/wine_data.csv')
