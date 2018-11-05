@@ -6,40 +6,13 @@ class _wine_database:
     def __init__(self):
         self.wines = {}
         self.users = {}
-        self.ratings = {}
 
     def load_all(self, movie_file):
         df = pd.read_csv(movie_file)
-        df['taster_id'] = df.groupby(['taster_name']).ngroup()
-        df['variety_id'] = df.groupby(['variety']).ngroup()
-        df['title_id'] = df.groupby(['title']).ngroup()
-        '''f = open(movie_file)
-        for line in f:
-            line = line.strip()
-            components = line.split(",")
-            # handle empty data entries. for now just replaced with NA
-            for i, component in enumerate(components):
-                if component == "":
-                    components[i] == "Not Available"
-        
-            #sort into wines, users, and ratings
-            num = components[0]
-            country = components[1]
-            description = components[2]
-            designation = components[3]
-            points = components[4]
-            price = components[5]
-            province = components[6]
-            region_1 = components[7]
-            region_2 = components[8]
-            taster = components[9]
-            twitter = components[10]
-            title = components[11]
-            variety = components[12]
-            winery = components[13]
-            pass
-
-        pass'''
+        df = df.assign(taster_id=(df['taster_name']).astype('category').cat.codes)
+        df = df.assign(variety_id=(df['variety']).astype('category').cat.codes)
+        df = df.assign(title_id=(df['title']).astype('category').cat.codes)
+        df = df.drop(['region_1', 'region_2'], axis=1)
 
 if __name__ == '__main__':
     wines = _wine_database()
