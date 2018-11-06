@@ -14,7 +14,7 @@ class TestWineDatabase(unittest.TestCase):
                 self.wdb.load_all("data/wine_data.csv")
         
         # these tests work already
-        '''
+        
         def test_get_wine(self):
                 self.reset_data()
                 wine = self.wdb.get_wine(28950)
@@ -78,42 +78,31 @@ class TestWineDatabase(unittest.TestCase):
                 self.assertEquals(review['average_rating'], 87.35296610169492)
                 self.assertEquals(review['variety'], "White Blend")
         
-        '''
         
         
-        
-        # these are shreyas old tests
-        '''
-        def test_set_user_movie_rating_1(self):
+        def test_set_review(self):
                 self.reset_data()
-                self.mdb.set_user_movie_rating(41, 787, 2)
-                rating = self.mdb.get_rating(787)
-                self.assertEquals(rating, 4.25)
+                review_info = {'score': 76, 'description': 'good stuff'}
+                self.wdb.set_review(9, 2058, review_info)
+                
+                review = self.wdb.get_review(9, 2058)
+                self.assertEquals(review['score'], 76)
+                self.assertEquals(review['description'], 'good stuff')
 
-        def test_set_user_movie_rating_2(self):
+        def test_delete_review(self):
                 self.reset_data()
-                self.mdb.set_user_movie_rating(41, 787, 2)
-                self.mdb.set_user_movie_rating(101, 787, 4)
-                rating = self.mdb.get_rating(787)
-                self.assertEquals(rating, 4.2)
+                review_info = {'score': 76, 'description': 'good stuff'}
+                self.wdb.set_review(9, 2058, review_info)
+                
+                review = self.wdb.get_review(9, 2058)
+                self.assertEquals(review['score'], 76)
+                self.assertEquals(review['description'], 'good stuff')
 
-        def test_set_and_get_movie_ratings(self):
-                self.reset_data()
-                self.mdb.set_user_movie_rating(41, 787, 2)
-                self.mdb.set_user_movie_rating(101, 787, 4)
-                hrm_mid = self.mdb.get_highest_rated_movie()
-                hrm_rating = self.mdb.get_rating(hrm_mid)
-                hrm = self.mdb.get_movie(hrm_mid)
-                hrm_name = hrm[0]
-                self.assertEquals(hrm_mid, 989)
-                self.assertEquals(hrm_name, 'Schlafes Bruder (Brother of Sleep) (1995)')
-                self.assertEquals(hrm_rating, 5.0)
+                self.wdb.delete_review(9, 2058)
+                review = self.wdb.get_review(9, 2058)
+                self.assertEquals(review, None)
 
-        def test_get_user_movie_rating(self):
-                self.reset_data()
-                rating = self.mdb.get_user_movie_rating(6030, 32)
-                self.assertEquals(rating, 5)
-        '''
+      
 if __name__ == "__main__":
     unittest.main()
 
