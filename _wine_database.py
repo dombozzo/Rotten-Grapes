@@ -29,6 +29,12 @@ class _wine_database:
                     'country': row['country']
                 }
 
+        def get_user(self, uid):
+            return self.users.get(uid)
+
+        def get_wine(self, wid):
+            return self.wines.get(wid)
+
 
 if __name__ == '__main__':
     wines = _wine_database()
