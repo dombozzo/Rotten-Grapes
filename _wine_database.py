@@ -8,14 +8,14 @@ class _wine_database:
         self.users = {}
         self.reviews = {}
 
-    def load_all(self, movie_file):
+    def load_all(self, wine_file):
         #clear what was present before
         self.wines = {}
         self.users = {}
         self.reviews = {}
         
         #read in new data
-        df = pd.read_csv(movie_file)
+        df = pd.read_csv(wine_file)
         df = df.assign(taster_id=(df['taster_name']).astype('category').cat.codes)
         df = df.assign(variety_id=(df['variety']).astype('category').cat.codes)
         df = df.assign(bottle_id=(df['title']).astype('category').cat.codes)
@@ -51,17 +51,50 @@ class _wine_database:
         except:
             return None
 
-# TODO
+
     def get_review(self, uid, wid):
-        # TODO. not sure how to access datafram correctly
         # This should just be returning the review information for a given user and wine bottle
-        pass
-    
-#TODO
+        try:
+            b1 = self.reviews['taster_id'] == uid
+            b2 = self.reviews['bottle_id'] == wid
+            review = self.reviews[b1 & b2]
+            info = {"score": review['points'].values[0], "description": review['description'].values[0]}
+        except:
+            return None
+        return info
+
     def get_variety_review(self, vid):
         # given variety id, iterate through dataframe for ratings of wines in this vid
         # return list of sorted ratings, average rating, or even better: BOTH
-        pass
+        try:
+            b1 = self.reviews['variety_id'] == vid
+            var = self.reviews[self.reviews['variety_id'] == vid].sort_values(by = "points", ascending = False)
+
+            wines = []
+            for index, row in var.iterrows():
+                title = row['title']
+                score = row['points']
+                descr = row['description']
+                wines.append({"title": title, "score": score, "description": descr})
+
+
+            myd = {
+                "variety": var['variety'].values[0],
+                "average_rating": np.mean(var['points']),
+                "featured_wines": wines
+            }
+            return myd
+        except:
+            return None
+
+    def get_variety(self, wid):
+        try:
+            entries = self.reviews[self.reviews['bottle_id'] == wid]
+            vid = entries['variety_id'].values[0]
+            return vid
+        except:
+            return None
+
 
     ####### SETS #######
     def set_user(self, uid, new_user_info):
@@ -75,23 +108,54 @@ class _wine_database:
         self.wines[wid] = new_wine_info
 #TODO
     def set_review(self, uid, wid, review_info):
-        # add element to the datafram if this review isn't present
+        # add element to the dataframe if this review isn't present
         # we can assume that review_info has a dictionary of 'description', 'rating'
         # add whatever else we need to set
-        pass
+        # review info is {"score" : 91, "description": "good stuff"}
+        
+        #variety_id, bottle_id, and taster_id
+        new_entry = {}
+        try:
+            userinfo = self.users[uid]
+            wineinfo = self.wines[wid]
+        except:
+            return None
+        
+        new_entry['taster_id'] = uid
+        new_entry['bottle_id'] = wid
+        new_entry['variety_id'] = self.get_variety(wid)
+        new_entry['title'] = wine_info['title']
+        new_entry['variety'] = wine_info['variety']
+        new_entry['province'] = wine_info['province']
+        new_entry['price'] = wine_info['price']
+        new_entry['winery'] = wine_info['winery']
+        new_entry['designation'] = wine_info['designation']
+        new_entry['country'] = wine_info['country']
+        
+        new_entry['taster_name'] = user_info['name']
+        new_entry['taster_twitter_handle'] = user_info['twitter']
+        
+        new_entry['points'] = review_info['score']
+        new_entry['description'] = review_info['description']
+        
+        self.reviews.append(new_entry)
+        
 
     ####### DELETES #######
     def delete_user(self, uid):
         del self.users[uid]
-#TODO
-    def delete_wine(self, wid):
-        #TODO: should we delete all reviews mentioning this wine at this point too?
-        del self.wines[wid]
+        # delete all user entries in reviews as well
+        self.reviews = self.reviews[self.reviews['taster_id'] != uid]
 
-#TODO
+    def delete_wine(self, wid):
+        del self.wines[wid]
+        #delete all wine reviews as well
+        self.reviews = self.reviews[self.reviews['bottle_id'] != wid]
+
     def delete_review(self, uid, wid):
-        # TODO. delete proper row of the dataframe
-        pass
+        b1 = self.reviews['taster_id'] != uid
+        b2 = self.reviews['bottle_id'] != wid
+        self.reviews = self.reviews[b1 | b2]
 
 
         def get_user(self, uid):
@@ -104,3 +168,5 @@ class _wine_database:
 if __name__ == '__main__':
     wines = _wine_database()
     wines.load_all('data/wine_data.csv')
+    wines.get_variety_review(690)
+    wines.delete_review(9, 79521)
