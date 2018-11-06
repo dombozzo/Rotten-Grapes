@@ -6,60 +6,60 @@ class TestWineDatabase(unittest.TestCase):
 
         #@classmethod
         wdb = _wine_database()
+        #wdb.load_all('data/wine_data.csv') #TODO COMMENT OUT AND AND PUT BACK IN INDIVIDUAL RESETS
 
         def reset_data(self):
                 "reset data is required because we cannot promise an order of test case execution"
-                self.wdb.delete_all_ratings()
+                # note that our load_all function clears all data in the system before reloading
                 self.wdb.load_all("data/wine_data.csv")
 
         def test_get_wine(self):
                 self.reset_data()
-                wine = self.wdb.get_wine(1)
-                self.assertEquals(wine, 'Jumanji (1995)')
-                self.assertEquals(wine, 'Adventure|Children\'s|Fantasy')
+                wine = self.wdb.get_wine(28950)
+                self.assertEquals(wine['title'], 'Citation 2004 Pinot Noir (Oregon)')
+                self.assertEquals(wine['variety'], 'Pinot Noir')
 
         def test_get_wine_null(self):
                 self.reset_data()
-                wine = self.mdb.get_movie(20000)
-                self.assertEquals(movie, None)
-
+                wine = self.wdb.get_wine(-1)
+                self.assertEquals(wine, None)
+        
         def test_set_wine(self):
                 self.reset_data()
-                movie = self.mdb.get_movie(2)
-                movie[0] = 'ABC'
-                self.mdb.set_movie(2, movie)
-                movie = self.mdb.get_movie(2)
-                self.assertEquals(movie[0], 'ABC')
+                wine = self.wdb.get_wine(28950)
+                wine['title'] = 'youve been tested!'
+                self.wdb.set_wine(28950, wine)
+                wine = self.wdb.get_wine(28950)
+                self.assertEquals(wine['title'], 'youve been tested!')
 
         def test_delete_wine(self):
                 self.reset_data()
-                self.mdb.delete_movie(2)
-                movie = self.mdb.get_movie(2)
-                self.assertEquals(movie, None)
-
+                self.wdb.delete_wine(28950)
+                wine = self.wdb.get_wine(28950)
+                self.assertEquals(wine, None)
+        
         def test_get_user(self):
                 self.reset_data()
-                user = self.mdb.get_user(3)
-                self.assertEquals(user[1], 25)
-                self.assertEquals(user[2], 15)
-                self.assertEquals(user[3], '55117')
+                user = self.wdb.get_user(15)
+                self.assertEquals(user['name'], 'Roger Voss')
+                self.assertEquals(user['twitter'], '@vossroger')
 
         def test_set_user(self):
                 self.reset_data()
-                user = self.mdb.get_user(3)
-                user[2] = 6
-                self.mdb.set_user(3, user)
-                user = self.mdb.get_user(3)
-                self.assertEquals(user[1], 25)
-                self.assertEquals(user[2], 6)
-                self.assertEquals(user[3], '55117')
+                user = self.wdb.get_user(15)
+                user['name'] = 'Mr. Test'
+                user['twitter'] = '@mrtesty'
+                self.wdb.set_user(15, user)
+                user = self.wdb.get_user(15)
+                self.assertEquals(user['name'], 'Mr. Test')
+                self.assertEquals(user['twitter'], '@mrtesty')
 
         def test_delete_user(self):
                 self.reset_data()
-                self.mdb.delete_user(3)
-                user = self.mdb.get_user(3)
+                self.wdb.delete_user(15)
+                user = self.wdb.get_user(15)
                 self.assertEquals(user, None)
-
+        '''
         def test_get_rating(self):
                 self.reset_data()
                 rating = self.mdb.get_rating(32)
@@ -108,7 +108,7 @@ class TestWineDatabase(unittest.TestCase):
                 self.reset_data()
                 rating = self.mdb.get_user_movie_rating(6030, 32)
                 self.assertEquals(rating, 5)
-
+        '''
 if __name__ == "__main__":
     unittest.main()
 
