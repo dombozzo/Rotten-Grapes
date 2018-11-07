@@ -6,6 +6,7 @@ Dominic J. Bozzo, Matthew J. Malir, Ale J. Lopez, Luke J. Wurl
 ### Overview
 Rotten Grapes is a wine recommendation system similar to the movie recommendation system Rotten Tomatoes.
 Users can add bottles of wine to review and review the wines with a score of 0-100 and a description of the bottle.
+Users can view the highest rates wines and information about these wines including the vineyard and province.
 
 ### API
 The intial data comes from the dataset that can be found at https://www.kaggle.com/zynicide/wine-reviews.
