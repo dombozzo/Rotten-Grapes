@@ -15,7 +15,7 @@ class _wine_database:
         self.reviews = {}
         
         #read in new data
-        df = pd.read_csv(wine_file)
+        df = pd.read_csv(wine_file, index_col=0)
         df = df.assign(taster_id=(df['taster_name']).astype('category').cat.codes)
         df = df.assign(variety_id=(df['variety']).astype('category').cat.codes)
         df = df.assign(bottle_id=(df['title']).astype('category').cat.codes)
@@ -106,7 +106,7 @@ class _wine_database:
         # update info for uid if in dictionary, add new element otherwise
         # new_wine_info is a dictionary containing all required elements for wine
         self.wines[wid] = new_wine_info
-#TODO
+
     def set_review(self, uid, wid, review_info):
         # add element to the dataframe if this review isn't present
         # we can assume that review_info has a dictionary of 'description', 'rating'
@@ -116,8 +116,8 @@ class _wine_database:
         #variety_id, bottle_id, and taster_id
         new_entry = {}
         try:
-            userinfo = self.users[uid]
-            wineinfo = self.wines[wid]
+            user_info = self.users[uid]
+            wine_info = self.wines[wid]
         except:
             return None
         
@@ -137,9 +137,8 @@ class _wine_database:
         
         new_entry['points'] = review_info['score']
         new_entry['description'] = review_info['description']
-        
-        self.reviews.append(new_entry)
-        
+
+        self.reviews = self.reviews.append(new_entry,ignore_index = True)
 
     ####### DELETES #######
     def delete_user(self, uid):
@@ -168,5 +167,5 @@ class _wine_database:
 if __name__ == '__main__':
     wines = _wine_database()
     wines.load_all('data/wine_data.csv')
-    wines.get_variety_review(690)
-    wines.delete_review(9, 79521)
+    # wines.get_variety_review(690)
+    # wines.delete_review(9, 79521)

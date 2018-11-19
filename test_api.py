@@ -2,11 +2,9 @@ from _wine_database import _wine_database
 import unittest
 
 class TestWineDatabase(unittest.TestCase):
-        """unit tests for python primer homework"""
 
         #@classmethod
         wdb = _wine_database()
-        #wdb.load_all('data/wine_data.csv') #TODO COMMENT OUT AND AND PUT BACK IN INDIVIDUAL RESETS
 
         def reset_data(self):
                 "reset data is required because we cannot promise an order of test case execution"
@@ -70,15 +68,12 @@ class TestWineDatabase(unittest.TestCase):
                 self.assertEquals(score, 87)
                 self.assertEquals(descrip, "Aromas include tropical fruit, broom, brimstone and dried herb. The palate isn't overly expressive, offering unripened apple, citrus and dried sage alongside brisk acidity.")
         
-        
         def test_get_variety_review(self):
                 self.reset_data()
                 review = self.wdb.get_variety_review(690)
                 self.assertEquals(review['featured_wines'][0]['score'], 97)
                 self.assertEquals(review['average_rating'], 87.35296610169492)
                 self.assertEquals(review['variety'], "White Blend")
-        
-        
         
         def test_set_review(self):
                 self.reset_data()
