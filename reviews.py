@@ -53,9 +53,15 @@ class ReviewController(object):
 
     def GET_VID(self, vid):
         output = {'result': 'success'}
+        vid = int(vid)
 
         try:
-            # Still need to finish
+            variety_info = self.wdb.get_variety_review(vid)
+            if variety_info:
+                output['data'] = variety_info
+            else:
+                output['result'] = 'error'
+                output['message'] = "No reviews with specified variety found"
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)
