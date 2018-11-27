@@ -34,7 +34,7 @@ class UserController(object):
         return json.dumps(output)
     
     def POST_USER(self):
-        temp = list(self.wbd.users)
+        temp = list(self.wdb.users)
         uid = max(temp) + 1
         uid = int(uid)
         output = {'result' : 'success'}
