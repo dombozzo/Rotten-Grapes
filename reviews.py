@@ -11,15 +11,34 @@ class ReviewController(object):
             self.wdb = wdb
 
 
-    def GET_REVIEW(self):
+    # def GET_REVIEW(self):
+    #     output = {'result': 'success'}
+    #
+    #     try:
+    #         data = json.loads(cherrypy.request.body.read().decode())
+    #         wine_info = self.wdb.get_review(data['uid'], data['bid'])
+    #         if wine_info:
+    #             output = {**output, **wine_info}
+    #         else:
+    #             output['result'] = 'error'
+    #             output['message'] = "Review with the specified id's does not exist"
+    #     except Exception as ex:
+    #         output['result'] = 'error'
+    #         output['message'] = str(ex)
+    #
+    #     return json.dumps(output)
+
+    def GET_REVIEW(self, uid, bid):
         output = {'result': 'success'}
 
         try:
-            data = json.loads(cherrypy.request.body.read().decode())
-            wine_info = self.wdb.get_review(data['uid'], data['bid'])
-            if wine_info:
+            wine_info = self.wdb.get_review(int(uid), int(bid))
+
+            if wine_info is not None:
+                wine_info['score'] = str(wine_info['score'])
                 output = {**output, **wine_info}
             else:
+
                 output['result'] = 'error'
                 output['message'] = "Review with the specified id's does not exist"
         except Exception as ex:
@@ -28,12 +47,12 @@ class ReviewController(object):
 
         return json.dumps(output)
 
-    def DELETE_REVIEW(self):
+    def DELETE_REVIEW(self, uid, bid):
         output = {'result': 'success'}
 
         try:
-            data = json.loads(cherrypy.request.body.read().decode())
-            self.wdb.delete_review(data['uid'], data['bid'])
+            #data = json.loads(cherrypy.request.body.read().decode())
+            self.wdb.delete_review(int(uid), int(bid))
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)

@@ -79,16 +79,19 @@ def start_service():
 
     # REVIEWS
     # /reviews/
-    dispatcher.connect('review_get','/reviews/',
-        controller = reviewController, action = 'GET_REVIEW',
-        conditions = dict(method = ['GET']))
+    #dispatcher.connect('review_get','/reviews/',
+     #   controller = reviewController, action = 'GET_REVIEW',
+      #  conditions = dict(method = ['GET']))
     dispatcher.connect('review_post','/reviews/',
         controller = reviewController, action = 'POST_REVIEW',
         conditions = dict(method = ['POST']))
-    dispatcher.connect('review_delete','/reviews/',
+    dispatcher.connect('review_delete','/reviews/:uid/:bid',
         controller = reviewController, action = 'DELETE_REVIEW',
         conditions = dict(method = ['DELETE']))
     dispatcher.connect('review_options','/reviews/',
+        controller = optionsController, action = 'OPTIONS',
+        conditions = dict(method = ['OPTIONS']))
+    dispatcher.connect('review_options','/reviews/:uid/:bid',
         controller = optionsController, action = 'OPTIONS',
         conditions = dict(method = ['OPTIONS']))
     # /reviews/:key
@@ -98,6 +101,14 @@ def start_service():
     dispatcher.connect('review_options_key','/reviews/:key',
         controller = optionsController, action = 'OPTIONS',
         conditions = dict(method = ['OPTIONS']))
+    # /reviews/:uid/:bid
+    dispatcher.connect('review_get','/reviews/:uid/:bid',
+        controller = reviewController, action = 'GET_REVIEW',
+        conditions = dict(method = ['GET']))
+    dispatcher.connect('review_options','/reviews/:uid/:bid', #added uid bid
+        controller = optionsController, action = 'OPTIONS',
+        conditions = dict(method = ['OPTIONS']))
+
 
     # RESET
     # /reset/
@@ -128,11 +139,3 @@ def start_service():
 if __name__ == '__main__':
     cherrypy.tools.CORS = cherrypy.Tool('before_finalize', CORS)
     start_service()
-
-
-
-
-
-
-
-

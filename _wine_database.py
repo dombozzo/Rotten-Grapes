@@ -39,12 +39,17 @@ class _wine_database:
     ####### GETS #######
     def get_user(self, uid):
         # attemp to return user id info, if not, return None to indicate error
-        return self.users.get(uid,None)
+        try:
+            return self.users[uid]
+        except:
+            return None
 
     def get_wine(self, wid):
         # attemp to return bottle id info, if not, return None to indicate error
-        return self.wines.get(wid,None)
-
+        try:
+            return self.wines[wid]
+        except:
+            return None
 
 
     def get_review(self, uid, wid):
@@ -54,7 +59,7 @@ class _wine_database:
             b2 = self.reviews['bottle_id'] == wid
             review = self.reviews[b1 & b2]
             info = {"score": review['points'].values[0], "description": review['description'].values[0]}
-        except:
+        except :
             return None
         return info
 
