@@ -8,9 +8,10 @@ class UserController(object):
     def __init__(self, wdb=None):
         if wdb is None:
             self.wdb = _wine_database()
+            self.wdb.load_all('data/wine_data.csv')
         else:
             self.wdb = wdb
-        self.wdb.load_all('data/wine_data.csv')
+
 
     def GET_USER_KEY(self, user_id):
 
