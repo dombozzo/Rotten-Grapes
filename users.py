@@ -47,6 +47,8 @@ class UserController(object):
             user.append(data['twitter'])
             self.wdb.set_user(uid, user)
 
+            output['user_id'] = uid
+
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)
