@@ -22,8 +22,8 @@ Down the road this will set up nicely for GET, PUT/POST, and DELETE calls.
 We will build off of these API methods to create the RESTful web service.
 
 ### Testing the API
-To test the API there is a test script `test_api.py` that calls the API methods from `_wine_database.py`
-The python files use python3, so run the script with the following command: `python3 test_wine_db.py`.
+To test the API there is a test script `test_api.py` located at `/tests/api/test_api.py` that calls the API methods from `_wine_database.py`
+The python files use python3, so run the script with the following command: `python3 test_api.py` from the proper directory.
 
 
 ### Using the Web Service
@@ -44,9 +44,9 @@ In general, follow this format to access (and interact) with our resources:
 GET/POST/PUT/DELETE to 'http://student04.cse.nd.edu:52087/' + resource [+ key + body]
 
 
-To test our resources, we have included a suite of python files (within tests/ directory). For your
+To test our resources, we have included a suite of python files (within `tests/server` directory). For your
 convenience, we have included a file named test_ws.py which will simultaneously launch all unit tests.
-If you wish to test a specific resource, please launch refer to the appropriate file within the tests/ dir.
+If you wish to test a specific resource, please launch refer to the appropriate file within the tests/server dir.
 
 
 
