@@ -11,9 +11,9 @@ class UserController(object):
         else:
             self.wdb = wdb
         self.wdb.load_all('data/wine_data.csv')
-        
+
     def GET_USER_KEY(self, user_id):
-        
+
         output = {'result' : 'success'}
         user_id = int(user_id)
 
@@ -26,17 +26,17 @@ class UserController(object):
             else:
                 output['result'] = 'error'
                 output['message'] = 'user not found'
-        
+
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)
-        
+
         return json.dumps(output)
-    
+
     def POST_USER(self):
-        temp = list(self.wdb.users)
-        uid = max(temp) + 1
-        uid = int(uid)
+        uid = max(self.wdb.users.keys()) + 1
+        # uid = max(temp) + 1
+        # uid = int(uid)
         output = {'result' : 'success'}
 
         data = json.loads(cherrypy.request.body.read())
@@ -50,7 +50,7 @@ class UserController(object):
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)
-        
+
         return json.dumps(output)
 
 
@@ -60,9 +60,9 @@ class UserController(object):
 
         try:
             user = self.wdb.delete_user(user_id)
-        
+
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)
-        
+
         return json.dumps(output)

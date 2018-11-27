@@ -21,6 +21,7 @@ class BottleController(object):
             wines = []
             for key,val in self.wdb.wines.items():
                 w = dict()
+                w['id'] = key
                 w['title'] = val['title']
                 w['variety'] = val['variety']
                 w['province'] = val['province']
@@ -45,7 +46,13 @@ class BottleController(object):
 
         try:
             wine = self.wdb.get_wine(bid)
-            output["information"] = wine
+
+            if wine is not None:
+                output["information"] = wine
+            else:
+                output['result'] = 'error'
+                output['message'] = 'user not found'
+
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)
