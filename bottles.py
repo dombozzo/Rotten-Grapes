@@ -10,7 +10,7 @@ class BottleController(object):
         else:
             self.wdb = wdb
 
-        self.wdb.load_all("./data/wine_data.csv")
+        self.wdb.load_all("data/wine_data.csv")
 
     # GET_ALL
     def GET_BOTTLE(self):
@@ -58,9 +58,9 @@ class BottleController(object):
         data = json.loads(cherrypy.request.body.read())
 
         #get new id for the bottle
-        temp = list(self.wbd.users)
-        wid = max(temp) + 1
-        wid = int(wid)
+        wid = max(self.wdb.users.keys()) + 1
+#         wid = max(temp) + 1
+#         wid = int(wid)
 
         output = {'result' : 'success', 'id' : wid}
         try:

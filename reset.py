@@ -12,7 +12,7 @@ class ResetController(object):
         if wdb is None:
             self.wdb = _wine_database()
         else:
-            self.wdb = mdb
+            self.wdb = wdb
 
     # event handlers for /reset/ requests
     def PUT_RESET(self):
