@@ -6,10 +6,9 @@ class ReviewController(object):
     def __init__(self, wdb=None):
         if wdb is None:
             self.wdb = _wine_database()
-            self.wdb.load_all("data/wine_data.csv")
         else:
             self.wdb = wdb
-
+        self.wdb.load_all("data/wine_data.csv")
 
     # def GET_REVIEW(self):
     #     output = {'result': 'success'}
@@ -33,12 +32,10 @@ class ReviewController(object):
 
         try:
             wine_info = self.wdb.get_review(int(uid), int(bid))
-
             if wine_info is not None:
                 wine_info['score'] = str(wine_info['score'])
                 output = {**output, **wine_info}
             else:
-
                 output['result'] = 'error'
                 output['message'] = "Review with the specified id's does not exist"
         except Exception as ex:

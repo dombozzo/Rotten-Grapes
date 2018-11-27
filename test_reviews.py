@@ -26,7 +26,6 @@ class TestReviews(unittest.TestCase):
         r = requests.get(self.REVIEWS_URL + str(uid) + '/' + str(bid))
         self.assertTrue(self.is_json(r.content.decode('utf-8')))
         review = json.loads(r.content.decode('utf-8'))
-        print(review)
         score = review['score']
         descrip = review['description']
         self.assertEquals(score, '87')
