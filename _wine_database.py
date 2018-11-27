@@ -152,13 +152,6 @@ class _wine_database:
         self.reviews = self.reviews[b1 | b2]
 
 
-        def get_user(self, uid):
-            return self.users.get(uid)
-
-        def get_wine(self, wid):
-            return self.wines.get(wid)
-
-
 if __name__ == '__main__':
     wines = _wine_database()
     wines.load_all('data/wine_data.csv')
