@@ -42,10 +42,10 @@ class UserController(object):
         data = json.loads(cherrypy.request.body.read())
 
         try:
-            user = list()
-            user.append(data['name'])
-            user.append(data['twitter'])
-            self.wdb.set_user(uid, user)
+            uinfo = {}
+            uinfo['name'] = data['name']
+            uinfo['twitter'] = data['twitter']
+            self.wdb.set_user(uid, uinfo)
 
             output['user_id'] = uid
 
