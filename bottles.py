@@ -58,7 +58,7 @@ class BottleController(object):
         data = json.loads(cherrypy.request.body.read())
 
         #get new id for the bottle
-        temp = list(self.wbd.users)
+        temp = list(self.wbd.users.keys())
         wid = max(temp) + 1
         wid = int(wid)
 
