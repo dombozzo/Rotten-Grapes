@@ -28,6 +28,7 @@ def start_service():
     bottleController = BottleController(wdb = wdb_o)
     reviewController = ReviewController(wdb = wdb_o)
     userController = UserController(wdb = wdb_o)
+    resetController = ResetController(wdb = wdb_o)
 
     # create dispatcher
     dispatcher = cherrypy.dispatch.RoutesDispatcher()
