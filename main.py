@@ -48,13 +48,13 @@ def start_service():
         controller = optionsController, action = 'OPTIONS',
         conditions = dict(method = ['OPTIONS']))
     # /bottles/:key
-    dispatcher.connect('bottle_get_key','/bottles/:key',
+    dispatcher.connect('bottle_get_key','/bottles/:bid',
         controller = bottleController, action = 'GET_BOTTLE_KEY',
         conditions = dict(method = ['GET']))
-    dispatcher.connect('bottle_delete_key','/bottles/:key',
+    dispatcher.connect('bottle_delete_key','/bottles/:bid',
         controller = bottleController, action = 'DELETE_BOTTLE_KEY',
         conditions = dict(method = ['DELETE']))
-    dispatcher.connect('bottle_options_key','/bottles/:key',
+    dispatcher.connect('bottle_options_key','/bottles/:bid',
         controller = optionsController, action = 'OPTIONS',
         conditions = dict(method = ['OPTIONS']))
 
@@ -67,13 +67,13 @@ def start_service():
         controller = optionsController, action = 'OPTIONS',
         conditions = dict(method = ['OPTIONS']))
     # /users/:key
-    dispatcher.connect('user_get_key','/users/:key',
+    dispatcher.connect('user_get_key','/users/:user_id',
         controller = userController, action = 'GET_USER_KEY',
         conditions = dict(method = ['GET']))
-    dispatcher.connect('user_delete_key','/users/:key',
+    dispatcher.connect('user_delete_key','/users/:user_id',
         controller = userController, action = 'DELETE_USER_KEY',
         conditions = dict(method = ['DELETE']))
-    dispatcher.connect('user_options_key','/users/:key',
+    dispatcher.connect('user_options_key','/users/:user_id',
         controller = optionsController, action = 'OPTIONS',
         conditions = dict(method = ['OPTIONS']))
 
@@ -85,9 +85,6 @@ def start_service():
     dispatcher.connect('review_post','/reviews/',
         controller = reviewController, action = 'POST_REVIEW',
         conditions = dict(method = ['POST']))
-    dispatcher.connect('reivew_put','/reviews/',
-        controller = reviewController, action = 'PUT_REVIEW',
-        conditions = dict(method = ['PUT']))
     dispatcher.connect('review_delete','/reviews/',
         controller = reviewController, action = 'DELETE_REVIEW',
         conditions = dict(method = ['DELETE']))
@@ -95,7 +92,7 @@ def start_service():
         controller = optionsController, action = 'OPTIONS',
         conditions = dict(method = ['OPTIONS']))
     # /reviews/:key
-    dispatcher.connect('review_get_key','/reviews/:key',
+    dispatcher.connect('review_get_key','/reviews/:vid',
         controller = reviewController, action = 'GET_REVIEW_KEY',
         conditions = dict(method = ['GET']))
     dispatcher.connect('review_options_key','/reviews/:key',

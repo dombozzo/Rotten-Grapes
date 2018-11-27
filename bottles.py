@@ -38,13 +38,13 @@ class BottleController(object):
         return json.dumps(output)
 
     #GET wid
-    def GET_BOTTLE_KEY(self, wid):
+    def GET_BOTTLE_KEY(self, bid):
         #return info on one bottle
         output = {'result': 'success'}
         bid = int(bid)
 
         try:
-            wine = self.wdb.get_wine(wid)
+            wine = self.wdb.get_wine(bid)
             output["information"] = wine
         except Exception as ex:
             output['result'] = 'error'
@@ -88,7 +88,7 @@ class BottleController(object):
         bid = int(bid)
 
         try:
-            wine = self.wdb.delete_wine(wid)
+            wine = self.wdb.delete_wine(bid)
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)

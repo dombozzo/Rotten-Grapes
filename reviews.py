@@ -1,4 +1,4 @@
-import cherrypy    
+import cherrypy
 import json
 from _wine_database import _wine_database
 
@@ -10,7 +10,7 @@ class ReviewController(object):
             self.wdb = wdb
         self.wdb.load_all("data/wine_data.csv")
 
-    def GET(self):
+    def GET_REVIEW(self):
         output = {'result': 'success'}
 
         try:
@@ -24,10 +24,10 @@ class ReviewController(object):
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)
-        
+
         return json.dumps(output)
 
-    def DELETE(self):
+    def DELETE_REVIEW(self):
         output = {'result': 'success'}
 
         try:
@@ -36,10 +36,10 @@ class ReviewController(object):
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)
-        
+
         return json.dumps(output)
 
-    def POST(self):
+    def POST_REVIEW(self):
         output = {'result': 'success'}
 
         try:
@@ -48,10 +48,10 @@ class ReviewController(object):
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)
-        
+
         return json.dumps(output)
 
-    def GET_VID(self, vid):
+    def GET_REVIEW_KEY(self, vid):
         output = {'result': 'success'}
         vid = int(vid)
 
@@ -65,5 +65,5 @@ class ReviewController(object):
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)
-        
+
         return json.dumps(output)
