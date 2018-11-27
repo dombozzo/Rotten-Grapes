@@ -107,7 +107,7 @@ def start_service():
         conditions = dict(method = ['GET']))
     dispatcher.connect('review_options','/reviews/:uid/:bid', #added uid bid
         controller = optionsController, action = 'OPTIONS',
-        conditions = dict(method = ['OPTIONS'])
+        conditions = dict(method = ['OPTIONS']))
         
     # RESET
     # /reset/
