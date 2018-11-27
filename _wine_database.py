@@ -13,7 +13,7 @@ class _wine_database:
         self.wines = {}
         self.users = {}
         self.reviews = {}
-        
+
         #read in new data
         df = pd.read_csv(wine_file, index_col=0)
         df = df.assign(taster_id=(df['taster_name']).astype('category').cat.codes)
@@ -34,22 +34,17 @@ class _wine_database:
                     'designation': row['designation'],
                     'country': row['country']
                 }
-    
-    
+
+
     ####### GETS #######
     def get_user(self, uid):
         # attemp to return user id info, if not, return None to indicate error
-        try:
-            return self.users[uid]
-        except:
-            return None
+        return self.users.get(uid,None)
 
     def get_wine(self, wid):
         # attemp to return bottle id info, if not, return None to indicate error
-        try:
-            return self.wines[wid]
-        except:
-            return None
+        return self.wines.get(wid,None)
+
 
 
     def get_review(self, uid, wid):
@@ -112,7 +107,7 @@ class _wine_database:
         # we can assume that review_info has a dictionary of 'description', 'rating'
         # add whatever else we need to set
         # review info is {"score" : 91, "description": "good stuff"}
-        
+
         #variety_id, bottle_id, and taster_id
         new_entry = {}
         try:
@@ -120,7 +115,7 @@ class _wine_database:
             wine_info = self.wines[wid]
         except:
             return None
-        
+
         new_entry['taster_id'] = uid
         new_entry['bottle_id'] = wid
         new_entry['variety_id'] = self.get_variety(wid)
@@ -131,10 +126,10 @@ class _wine_database:
         new_entry['winery'] = wine_info['winery']
         new_entry['designation'] = wine_info['designation']
         new_entry['country'] = wine_info['country']
-        
+
         new_entry['taster_name'] = user_info['name']
         new_entry['taster_twitter_handle'] = user_info['twitter']
-        
+
         new_entry['points'] = review_info['score']
         new_entry['description'] = review_info['description']
 
