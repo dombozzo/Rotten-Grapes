@@ -45,7 +45,7 @@ In general, follow this format to access (and interact) with our resources:
 
 To test our resources, we have included a suite of python files (within `tests/server` directory). For your
 convenience, we have included a file named `test_ws.py`, which will simultaneously launch all unit tests. Do this
-simply by running the command `./test_ws.py` in your `tests/server` directory. If you wish to test a specific resource, please run the appropriate file within the tests/server dir.
+simply by running the command `./test_ws.py` in your `tests/server` directory. If you wish to test a specific resource, please run the appropriate file within the `tests/server` dir.
 
 
 
