@@ -3,7 +3,7 @@
 Paradigms Final Project --
 Dominic J. Bozzo, Matthew J. Malir, Ale J. Lopez, Luke J. Wurl
 
-REPO LINK: `https://gitlab.com/dbozzo/rotten-grapes.git`
+REPO LINK: https://gitlab.com/dbozzo/rotten-grapes.git
 
 ### Overview
 Rotten Grapes is a wine recommendation system similar to the movie recommendation system Rotten Tomatoes.
@@ -29,7 +29,7 @@ The python files use python3, so run the script with the following command: `pyt
 
 
 ### Using the Web Service
-Our cherrypy server is available on port # `52087` -> `http://student04.cse.nd.edu:52087`
+Our cherrypy server is available on port # `52087` -> http://student04.cse.nd.edu:52087
 
 PLEASE REMEMBER TO START THE SERVER `python3.6 main.py` IN MAIN DIRECTORY PRIOR TO MAKING ANY REQUESTS.
 
