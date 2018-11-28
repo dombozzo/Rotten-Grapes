@@ -45,7 +45,7 @@ GET/POST/PUT/DELETE to 'http://student04.cse.nd.edu:52087/' + resource [+ key + 
 
 
 To test our resources, we have included a suite of python files (within `tests/server` directory). For your
-convenience, we have included a file named test_ws.py which will simultaneously launch all unit tests.
+convenience, we have included a file named `test_ws.py` which will simultaneously launch all unit tests.
 If you wish to test a specific resource, please launch refer to the appropriate file within the tests/server dir.
 
 
