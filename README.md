@@ -3,6 +3,8 @@
 Paradigms Final Project --
 Dominic J. Bozzo, Matthew J. Malir, Ale J. Lopez, Luke J. Wurl
 
+REPO LINK: `https://gitlab.com/dbozzo/rotten-grapes.git`
+
 ### Overview
 Rotten Grapes is a wine recommendation system similar to the movie recommendation system Rotten Tomatoes.
 Users can review a bottle of wine with a score of 0-100 and a description of the bottle.
