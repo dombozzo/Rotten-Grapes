@@ -29,7 +29,7 @@ The python files use python3, so run the script with the following command: `pyt
 ### Using the Web Service
 Our cherrypy server is available on port # `52087` -> `http://student04.cse.nd.edu:52087`
 
-PLEASE REMEMBER TO START THE SERVER `python3.6 main.py` PRIOR TO MAKING ANY REQUESTS.
+PLEASE REMEMBER TO START THE SERVER `python3.6 main.py` IN MAIN DIRECTORY PRIOR TO MAKING ANY REQUESTS.
 
 The web service can be accessed by making HTTP GET, POST, PUT, & DELETE requests to the resources specified in
 RESTful JSON specification table (please refer to file restful_json_specification.pdf). Please note that our resources do not maintain functionality beyond what is
@@ -45,7 +45,7 @@ In general, follow this format to access (and interact) with our resources:
 
 To test our resources, we have included a suite of python files (within `tests/server` directory). For your
 convenience, we have included a file named `test_ws.py`, which will simultaneously launch all unit tests. Do this
-simply by running the command `./test_ws.py` in your tests/server directory. If you wish to test a specific resource, please run the appropriate file within the tests/server dir.
+simply by running the command `./test_ws.py` in your `tests/server` directory. If you wish to test a specific resource, please run the appropriate file within the tests/server dir.
 
 
 
