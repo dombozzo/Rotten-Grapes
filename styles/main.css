@@ -1,0 +1,21 @@
+.userInfo {
+    margin: 10px;
+    align-self: center;
+    background-color: lightgray;
+    border-radius: 15px;
+    text-align: center;
+    padding: 10px;
+}
+
+.searchArea {
+    margin: 10px;
+    align-self: center;
+    background-color: lightgray;
+    border-radius: 15px;
+    text-align: center;
+    padding: 10px;
+}
+
+.dropdown-menu {
+    width: 400px !important;
+}
