@@ -1,13 +1,8 @@
-.userInfo {
-    margin: 10px;
-    align-self: center;
-    background-color: lightgray;
-    border-radius: 15px;
-    text-align: center;
-    padding: 10px;
+body, html {
+    width: 100%;
 }
 
-.searchArea {
+.sideGroup {
     margin: 10px;
     align-self: center;
     background-color: lightgray;
