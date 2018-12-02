@@ -9,9 +9,10 @@ REPO LINK: https://gitlab.com/dbozzo/rotten-grapes.git
 Rotten Grapes is a wine recommendation system similar to the movie recommendation system Rotten Tomatoes.
 Users can review a bottle of wine with a score of 0-100 and a description of the bottle.
 Users can view the highest rated wines and information about these wines including the vineyard and province.
+This document outlines our API, Web Service, and Web Client in detail, and is followed by a summary of steps for executing the Rotten Grapes system.
 
 ### API
-The intial data comes from the dataset that can be found at https://www.kaggle.com/zynicide/wine-reviews.
+The initial data comes from the dataset that can be found at https://www.kaggle.com/zynicide/wine-reviews.
 The wine database consists of 3 main groups of data: users, wines, and reviews.
 Users consists of a dictionary where the key is the user's id and the value is a dictionary consisting of the user's name and twitter handle.
 Wines consists of a dictionary where the key is the wine's id and the value is a dictionary cosisting of information about that bottle of wine (province, region, etc.).
@@ -50,4 +51,14 @@ convenience, we have included a file named `test_ws.py`, which will simultaneous
 simply by running the command `./test_ws.py` in your `tests/server` directory. If you wish to test a specific resource, please run the appropriate file within the `tests/server` dir.
 
 
+### Interacting with the Web Client
+Once wurl gets this stuff to the cloud we can describe here.
 
+Tests here?
+
+
+## Summary: Steps for Execution
+1. Clone this repository
+2. Start the server by executing the command `python3.6 main.py` where python3.6 points to /afs/nd.edu/user14/csesoft/2017-fall/anaconda3/bin/python
+3. Navigate on your browser of choice to URL
+4. Interact as you please! 
