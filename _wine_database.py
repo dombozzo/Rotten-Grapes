@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import math
 
 class _wine_database:
 
@@ -23,7 +24,10 @@ class _wine_database:
         self.reviews = df
         for index, row in df.iterrows():
             if row['taster_id'] not in self.users:
-                self.users[row['taster_id']] = {'name': row['taster_name'], 'twitter': row['taster_twitter_handle']}
+                twit = str(row['taster_twitter_handle'])
+                if len(twit):
+                    twit = "n/a"
+                self.users[row['taster_id']] = {'name': row['taster_name'], 'twitter': twit}
             if row['bottle_id'] not in self.wines:
                 self.wines[row['bottle_id']] = {
                     'title': row['title'],
