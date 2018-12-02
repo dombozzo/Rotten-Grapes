@@ -75,7 +75,8 @@ class _wine_database:
                 title = row['title']
                 score = row['points']
                 descr = row['description']
-                wines.append({"title": title, "score": score, "description": descr})
+                id = row['bottle_id']
+                wines.append({"title": title, "score": score, "description": descr, "id": id})
 
 
             myd = {
