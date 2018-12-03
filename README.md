@@ -85,9 +85,9 @@ NOTE: sign in/out button is in top left corner
 
 To test the web client, we verified that the UI produced the same output as our test scripts for the api and the server. 
 During the UI testing process, we were able to catch (and fix) a critical error in the POST functionality of our reviews resource. 
-We were eventually able to ensure that all functionalities of UI work as expected, as shown in our demonstration video at https://www.youtube.com/watch?v=xi5KluKh_IQ. 
+We were eventually able to ensure that all functionalities of the UI work as expected, as shown in our demonstration video at https://www.youtube.com/watch?v=xi5KluKh_IQ. 
 Since our javascript code simply served to call functions that had already been tested in earlier stages of development, 
-the errors that we found were easy to fix.
+the errors that we found in UI were easy to fix.
 
 
 ## Summary: Steps for Execution
