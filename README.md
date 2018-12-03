@@ -14,12 +14,17 @@ This document outlines our API, Web Service, and Web Client in detail, and is fo
 ### API
 The initial data comes from a csv file that can be found at https://www.kaggle.com/zynicide/wine-reviews.
 Our database consists of 3 main data categories: users, wines, and reviews.
-Users is stored as a dictionary where the key is the user id and the value is a dictionary consisting of the user's name and twitter handle.
-Wines is stored as a dictionary where the key is the wine id and the value is a dictionary consisting of information about that bottle of wine (province, region, etc.).
-Finally, reviews is stored as a dataframe that contains all of the users' reviews of the wine bottles (1 row per review).
+Users are stored in a dictionary where the key is the user id and the value is a dictionary consisting of the user's name and twitter handle.
+Wines are stored in a dictionary where the key is the wine id and the value is a dictionary consisting of information about that bottle of wine (province, region, etc.).
+Finally, reviews are stored in a dataframe that contains all of the users' reviews of the wine bottles (1 row per review).
 Our API uses these three groupings of data to store and extract relevant information.
 For each of these three groupings, the API allows for the getting, setting, and deleting of information.
-We have included functions that allow us to get a specific user's review for a specific wine bottle, receive information on a specific variety (average rating for all bottles belonging to such variety, name of the variety, and a list of the wine bottles that belong to it), and even set a new review, using a specific user id and wine bottle id.
+In addition to basic sets, gets, and deletes, we have included functions that allow us to do the following:
+-get a specific user's review on a specific wine bottle
+-retrieve information on a specific variety
+    -average rating for all bottles belonging to such variety
+    -name of the variety, and a list of the wine bottles that belong to it
+-create a new review, using a specific user id and wine bottle id
 
 These functions are later utilized to execute GET, PUT/POST, and DELETE calls and create the RESTful web service.
 
@@ -34,7 +39,8 @@ Our cherrypy server is available on port # `52087` -> http://student04.cse.nd.ed
 PLEASE REMEMBER TO START THE SERVER `python3.6 main.py` IN MAIN DIRECTORY PRIOR TO MAKING ANY REQUESTS.
 
 The web service can be accessed by making HTTP GET/POST/PUT/DELETE requests to the resources specified in the
-RESTful JSON specification table (please refer to file restful_json_specification.pdf). Please note that our resources do not maintain functionality beyond what is
+RESTful JSON specification table (please refer to file restful_json_specification.pdf). 
+Please note that our resources do not maintain functionality beyond what is
 mentioned in the table (i.e. not all resources support all request types).
 
 For example, to get information about a specific user, follow this format:
@@ -45,9 +51,12 @@ In general, follow this format to access (and interact) with our resources:
 
     GET/POST/PUT/DELETE to 'http://student04.cse.nd.edu:52087/' + resource [+ key + body]
 
-To test our resources, we have included a suite of python files (within `tests/server` directory). For your
+To test our web service, we have included a suite of python files (within `tests/server` directory). For your
 convenience, we have included a file named `test_ws.py`, which will simultaneously launch all unit tests. Do this
-simply by running the command `./test_ws.py` in your `tests/server` directory. If you wish to test a specific resource, please run the appropriate file within the `tests/server` dir.
+simply by running the command `./test_ws.py` in your `tests/server` directory. 
+If you wish to test a specific resource, please run the appropriate file within the `tests/server` dir.
+
+NOTE: the server must be running for tests to be properly executed.
 
 
 ### Interacting with the Web Client
@@ -71,7 +80,7 @@ NOTE: create review button is in top right corner
 
 3) The user can log in and log out to preserve his/her sessions on Rotten Grapes.
 
-NOTE: sign in/out button in top left corner
+NOTE: sign in/out button is in top left corner
 
 To test the web client, we verified that the UI produced the same output as our test scripts for the api and the server. 
 During the UI testing process, we were able to catch (and fix) a critical error in the POST functionality of our reviews resource. 
