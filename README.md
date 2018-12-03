@@ -72,7 +72,7 @@ For example, the user can view the best Pinot Noir's by searching for variety nu
 the database contains special characters (accent marks, etc.) that cannot be processed by the javascript JSON interpreter.
 Once the user queries for a variety, they can view more information about a specific wine by clicking "More Information" under each wine that pops up. This can be done for each wine.
 
-NOTE: search box is in top right corner
+NOTE: search box is in right panel
 
 2) To create a review, simply click the create review button. This will open a form where bottle id, score, and description can all be entered.
 Once the review is submitted, try searching by variety id to find your review!
@@ -81,7 +81,7 @@ NOTE: create review button is in top right corner
 
 3) The user can log in and log out to preserve his/her sessions on Rotten Grapes.
 
-NOTE: sign in/out button is in top left corner
+NOTE: sign in/out button is in left panel
 
 To test the web client, we verified that the UI produced the same output as our test scripts for the api and the server. 
 During the UI testing process, we were able to catch (and fix) a critical error in the POST functionality of our reviews resource. 
