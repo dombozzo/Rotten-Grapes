@@ -25,12 +25,12 @@ function USERS_GET(){
     xhr.open("GET", url, true)
 
     xhr.onload = function(e){
-        console.log(xhr.responseText);
+        // console.log(xhr.responseText);
         if (JSON.parse(xhr.responseText)["result"] == "success"){
             signIn(JSON.parse(xhr.responseText)["name"], JSON.parse(xhr.responseText)["twitter"]);
         } else {
             document.querySelector('.errorUid').removeAttribute("hidden");
-            console.log("error uid");
+            // console.log("error uid");
         }
     }
 
@@ -68,7 +68,7 @@ function USERS_POST(){
     xhr.open("POST", url, true)
 
     xhr.onload = function(e){
-        console.log(xhr.responseText);
+        // console.log(xhr.responseText);
         UID = JSON.parse(xhr.responseText)["user_id"];
         signIn(name, twitter);
     }
@@ -92,18 +92,20 @@ function REVIEWS_POST(bid, score, desc){
     xhr.open("POST", url, true);
 
     xhr.onload = function(e){
-        console.log(xhr.responseText)
+        // console.log(xhr.responseText)
     }
 
     xhr.onerror = function(e) {
         console.log(xhr.statusText)
     }
 
+    // console.log("description: " + desc.toString())
+
     var payload = {
-        "uid": UID,
-        "bid": bid,
-        "score": score,
-        "description": desc
+        "uid": UID.toString(),
+        "bid": bid.toString(),
+        "score": score.toString(),
+        "description": desc.toString()
     }
     xhr.send(JSON.stringify(payload))
 }
@@ -111,6 +113,7 @@ function REVIEWS_POST(bid, score, desc){
 function BOTTLES_GET(ev){
     // console.log(ev.target);
     bid = ev.target.id;
+    ev.target.setAttribute("hidden", "true");
     var xhr = new XMLHttpRequest()
 
     url = "http://student04.cse.nd.edu:52087/bottles/" + bid;
@@ -128,19 +131,6 @@ function BOTTLES_GET(ev){
     xhr.send(null)
 }
 
-function setSearchSelected(ev) {
-    selectedValueSearch = document.querySelector('input[name="search"]:checked').value + "Form";
-    searchFormsChildren = document.querySelector('.searchForms').children;
-    console.log(selectedValueSearch);
-    for (var i = 0; i < searchFormsChildren.length; i++){
-        searchFormsChildren[i].setAttribute("hidden", "true");
-        console.log(searchFormsChildren[i].className == selectedValueSearch);
-        if (searchFormsChildren[i].className == selectedValueSearch){
-            searchFormsChildren[i].removeAttribute("hidden");
-        }
-    }
-}
-
 function signIn(userName, twitter){
     // API is called and then this changes the HTML that needs to be changed
     document.querySelector('.userSignIn').setAttribute("hidden", "true");
@@ -148,8 +138,8 @@ function signIn(userName, twitter){
     userNameItem = document.querySelector('.userName');
     twitterItem = document.querySelector('.twitter');
     uidItem = document.querySelector('.userUid');
-    console.log(userName);
-    console.log(twitter);
+    // console.log(userName);
+    // console.log(twitter);
     userNameItem.innerHTML = userName;
     twitterItem.innerHTML = twitter;
     uidItem.innerHTML = "UID: " + UID;
@@ -208,8 +198,6 @@ function createSingleReviewHTML(review){
 }
 
 function addInfo(bid, info){
-    console.log(info);
-    // bid = "" + bid;
     targetButton = document.getElementById(bid);
     moreInfoDiv = document.createElement("div");
     moreInfoUL = document.createElement("ul");
@@ -231,15 +219,12 @@ function addInfo(bid, info){
     moreInfoUL.appendChild(designation);
     moreInfoUL.appendChild(province);
     moreInfoDiv.appendChild(moreInfoUL);
-    console.log(moreInfoDiv);
     targetButton.parentElement.insertAdjacentHTML('beforeend', moreInfoDiv.outerHTML);
 }
 
 function searchVariety(resp){
     middlePart = document.querySelector('.topCenter');
     middlePart.innerHTML = "";
-    // <h1>Variety (Average Rating: 89.9)</h1>
-    //                 <br/><br/>
     var variety = resp.variety;
     var avg_rating = resp.average_rating;
     title = document.createElement('h1');
@@ -252,7 +237,6 @@ function searchVariety(resp){
     var wines = resp.featured_wines;
     for (var i = 0; i < wines.length; i++){
         htmlEle = createSingleReviewHTML(wines[i]);
-        console.log(htmlEle);
         middlePart.appendChild(htmlEle);
         middlePart.appendChild(br);
     }
@@ -260,8 +244,6 @@ function searchVariety(resp){
     for (var i = 0; i < moreInfoButtons.length; i++){
         moreInfoButtons[i].addEventListener('click', this.BOTTLES_GET.bind(this));
     }
-    console.log(variety);
-    console.log(resp);
 }
 
 UID = -1
