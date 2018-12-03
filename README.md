@@ -52,13 +52,24 @@ simply by running the command `./test_ws.py` in your `tests/server` directory. I
 
 
 ### Interacting with the Web Client
-Once wurl gets this stuff to the cloud we can describe here.
+Once the server is running, one can utilize the web client by navigating to `http://student04.cse.nd.edu/lwurl/grapes/` in your favorite browser.
 
-Tests here?
+At this screen, the user is greeted with a playful photo of the Rotten Grapes founders upon entry to the site. 
+The user will then be able to log in in the top left corner, or create a new profile if they are new to the site. Then, they can search by variety_id in the top right
+corner. This will search through our reviews database to present the user with the top rated wines in this variety. For example, the user can view the best
+Pinot Noir's by searching for variety number 690. Due to limitations of the JSON interpreter provided to us for our javascript code, we were unable to implement
+this search by name. This is simply because the JSON iterpreter was unable to process some special characters from our data set. 
+
+Once the user queries for a variety, they can view more information about a specific wine by clicking "More Information" under each wine that pops up. This can be done for each wine.
+As always, the user can log in and log out to preserve their sessions on Rotten Grapes.
+
+To test the web client, we ensured that the user interface produced the same visual output that our test scripts for the api and the server produced. From this, we were able
+to catch a vital error in the POST functionality of our reviews resource. We were eventually able to verify that all of the functionality works as anticipated. Our 
+javascript code simply served to call functions which were already tested in our api and server tests, so this result was expected.
 
 
 ## Summary: Steps for Execution
 1. Clone this repository
 2. Start the server by executing the command `python3.6 main.py` where python3.6 points to /afs/nd.edu/user14/csesoft/2017-fall/anaconda3/bin/python
-3. Navigate on your browser of choice to URL
+3. Navigate on your browser of choice to `http://student04.cse.nd.edu/lwurl/grapes/`
 4. Interact as you please! 
