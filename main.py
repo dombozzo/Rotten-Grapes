@@ -1,4 +1,4 @@
-# rotton grapes
+# rotten grapes
 import cherrypy
 import json
 
