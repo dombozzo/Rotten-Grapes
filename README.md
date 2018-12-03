@@ -20,11 +20,11 @@ Finally, reviews are stored in a dataframe that contains all of the users' revie
 Our API uses these three groupings of data to store and extract relevant information.
 For each of these three groupings, the API allows for the getting, setting, and deleting of information.
 In addition to basic sets, gets, and deletes, we have included functions that allow us to do the following:
--get a specific user's review on a specific wine bottle
--retrieve information on a specific variety
-    -average rating for all bottles belonging to such variety
-    -name of the variety, and a list of the wine bottles that belong to it
--create a new review, using a specific user id and wine bottle id
+- get a specific user's review on a specific wine bottle
+- retrieve information on a specific variety
+    - average rating for all bottles belonging to such variety
+    - name of the variety, and a list of the wine bottles that belong to it
+- create a new review, using a specific user id and wine bottle id
 
 These functions are later utilized to execute GET, PUT/POST, and DELETE calls and create the RESTful web service.
 
