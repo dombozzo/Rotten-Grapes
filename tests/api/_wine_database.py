@@ -86,9 +86,8 @@ class _wine_database:
                 wines.append({"title": title, "score": score, "description": descr, "id": id})
 
             mappings = self.vars
-
             myd = {
-                #"mapping": mappings,
+                # "mapping": mappings,
                 "variety": var['variety'].values[0],
                 "average_rating": round(np.mean(var['points']), 3),
                 "featured_wines": wines

@@ -62,7 +62,8 @@ class ReviewController(object):
 
         try:
             data = json.loads(cherrypy.request.body.read().decode())
-            self.wdb.set_review(data['uid'], data['bid'], {'score': data['score'], 'description': data['description']})
+            vid = self.wdb.set_review(data['uid'], data['bid'], {'score': data['score'], 'description': data['description']})
+            output['vid'] = vid
         except Exception as ex:
             output['result'] = 'error'
             output['message'] = str(ex)

@@ -40,7 +40,7 @@ class TestReviews(unittest.TestCase):
         data = resp['data']
 
         self.assertEquals(data['featured_wines'][0]['score'], 97)
-        self.assertEquals(data['average_rating'], 87.35296610169492)
+        self.assertEquals(data['average_rating'], 87.353)
         self.assertEquals(data['variety'], "White Blend")
 
     def test_reviews_post(self):
